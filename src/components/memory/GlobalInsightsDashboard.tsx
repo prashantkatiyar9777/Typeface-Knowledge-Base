@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  BarChart3, FileText, Users, Target, RefreshCw, Calendar, ArrowUp, Clock, Filter, Download,
+  BarChart3, FileText, Users, Target, RefreshCw, Calendar, Clock, Filter, Download,
   Volume2, Palette, Layers, MessageSquare, Target as TargetIcon, Code, Heart, Globe, Tag,
   AlertTriangle, CheckCircle, ChevronLeft, ChevronRight, AlertOctagon, ExternalLink
 } from 'lucide-react';
@@ -656,21 +656,16 @@ export const GlobalInsightsDashboard: React.FC = () => {
                   <p className="text-2xl font-bold text-gray-900">{card.value}</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-1 text-sm">
-                <ArrowUp className="w-3 h-3 text-[#111013]" />
-                <span className="text-green-600">{card.trend}</span>
-                <span className="text-gray-500">{card.trendLabel}</span>
-              </div>
-            </div>
+                </div>
           ))}
-        </div>
+              </div>
         
         {/* Brand DNA Dimensions */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-gray-900">Brand Behaviour Blueprint</h3>
             <p className="text-sm text-gray-500">Swipe to explore all dimensions</p>
-          </div>
+                </div>
           <Carousel>
             {dimensionsData.map(dimension => (
               <div key={dimension.id} className="h-full">
@@ -704,70 +699,42 @@ export const GlobalInsightsDashboard: React.FC = () => {
             {driftData.map(drift => (
               <div key={drift.id} className="h-full">
                 {renderDriftCard(drift)}
-              </div>
+                    </div>
             ))}
           </Carousel>
-        </div>
-
+                  </div>
+                  
         {/* Extraction Coverage */}
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Extraction Coverage</h3>
-          <div className="space-y-4">
+                        <div className="space-y-4">
             {coverageData.map((item, index) => (
               <div key={index} className="space-y-1.5">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-700">{item.name}</span>
-                  <div className="flex items-center space-x-2">
+                              <div className="flex items-center space-x-2">
                     <span className="text-gray-500 text-xs">Updated {item.updated}</span>
                     <span className={`font-medium ${
-                      item.percentage >= 90 ? 'text-green-600' :
-                      item.percentage >= 80 ? 'text-yellow-600' :
-                      'text-red-600'
+                      item.percentage >= 90 ? 'text-[#111013]' :
+                      item.percentage >= 80 ? 'text-[#111013]/80' :
+                      'text-[#111013]/60'
                     }`}>{item.percentage}%</span>
-                  </div>
-                </div>
+                              </div>
+                            </div>
                 <div className="w-full bg-gray-100 rounded-full h-2">
                   <div 
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      item.percentage >= 90 ? 'bg-green-500' :
-                      item.percentage >= 80 ? 'bg-yellow-500' :
-                      'bg-red-500'
-                    }`}
-                    style={{ width: `${item.percentage}%` }}
+                    className="h-2 rounded-full transition-all duration-300 bg-[#111013]"
+                    style={{ 
+                      width: `${item.percentage}%`,
+                      opacity: item.percentage >= 90 ? '1' : 
+                              item.percentage >= 80 ? '0.8' : '0.6'
+                    }}
                   ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-200">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button className="flex items-center space-x-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-left">
-              <BarChart3 className="w-6 h-6 text-[#111013]" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">Generate Brand Report</p>
-                <p className="text-xs text-gray-500">Export comprehensive brand DNA analysis</p>
-              </div>
-            </button>
-            <button className="flex items-center space-x-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-left">
-              <Users className="w-6 h-6 text-[#111013]" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">Train New Agent</p>
-                <p className="text-xs text-gray-500">Create AI agent from brand patterns</p>
-              </div>
-            </button>
-            <button className="flex items-center space-x-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-left">
-              <Calendar className="w-6 h-6 text-[#111013]" />
-              <div>
-                <p className="text-sm font-medium text-gray-900">Schedule Analysis</p>
-                <p className="text-xs text-gray-500">Set up automated brand monitoring</p>
-              </div>
-            </button>
-          </div>
-        </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
       </div>
     </div>
   );

@@ -3,7 +3,35 @@ export interface BrandDimension {
   title: string;
   icon: string;
   color: string;
-  data: any;
+  data: {
+    rule: string;
+    dominant?: Array<{ label: string; value: number; color: string }>;
+    elements?: Array<{ type: string; frequency: number; per1000: number }>;
+    flows?: Array<{ pattern: string; frequency: number }>;
+    brandTerms?: Array<{ term: string; count: number }>;
+    formality?: { score: number };
+    pronouns?: { we: number; you: number; i: number };
+    timeline?: Array<{ date: string; value: number }>;
+    examples?: Array<{ text: string; score: number; context: string }>;
+    styleViolations?: Array<{
+      type: string;
+      severity: 'critical' | 'mild';
+      count: number;
+      examples: string[];
+    }>;
+    performanceMetrics?: {
+      ctr: number;
+      engagement: number;
+      dwellTime: number;
+      conversionRate: number;
+    };
+    passiveVoice?: number;
+    sentenceLength?: number;
+    readabilityGrade?: string;
+    avgSections?: number;
+    topCTAs?: Array<{ text: string; count: number }>;
+    audienceMatch?: Array<{ persona: string; score: number }>;
+  };
 }
 
 export const BRAND_DIMENSIONS: BrandDimension[] = [
@@ -13,15 +41,57 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'Volume2',
     color: 'bg-[#111013]',
     data: {
+      rule: 'Professional tone with trust-building language and moderate directness.',
       dominant: [
-        { label: 'Trust-building', value: 45, color: 'bg-[#111013]' },
-        { label: 'Conversational', value: 25, color: 'bg-[#111013]' },
-        { label: 'Authoritative', value: 20, color: 'bg-[#111013]' },
-        { label: 'Casual', value: 10, color: 'bg-[#111013]' }
+        { label: 'Trust-building', value: 45, color: 'bg-blue-500' },
+        { label: 'Conversational', value: 25, color: 'bg-green-500' },
+        { label: 'Authoritative', value: 20, color: 'bg-purple-500' },
+        { label: 'Casual', value: 10, color: 'bg-orange-500' }
       ],
-      formality: { score: 0.72, trend: 'up' },
-      pronouns: { we: 45, you: 35, i: 15, they: 5 },
-      rule: 'Professional tone with trust-building language dominates across content types'
+      formality: { score: 0.72 },
+      pronouns: { we: 45, you: 35, i: 15 },
+      timeline: [
+        { date: '2024-01', value: 68 },
+        { date: '2024-02', value: 72 },
+        { date: '2024-03', value: 75 }
+      ],
+      audienceMatch: [
+        { persona: 'B2B Executives', score: 84 },
+        { persona: 'Technical Leaders', score: 76 },
+        { persona: 'Product Managers', score: 68 }
+      ],
+      examples: [
+        {
+          text: "Our enterprise-grade solution ensures seamless integration with your existing workflow.",
+          score: 92,
+          context: "Product Description"
+        },
+        {
+          text: "We understand the challenges of scaling your infrastructure securely.",
+          score: 88,
+          context: "Pain Point Discussion"
+        }
+      ],
+      styleViolations: [
+        {
+          type: "Informal Language",
+          severity: "mild",
+          count: 3,
+          examples: ["Hey there! Check out this cool feature..."]
+        },
+        {
+          type: "Inconsistent Voice",
+          severity: "critical",
+          count: 2,
+          examples: ["I personally think this is the best approach..."]
+        }
+      ],
+      performanceMetrics: {
+        ctr: 4.2,
+        engagement: 72,
+        dwellTime: 185,
+        conversionRate: 3.1
+      }
     }
   },
   {
@@ -30,13 +100,49 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'Palette',
     color: 'bg-[#111013]',
     data: {
+      rule: 'Long-form sentences with consistent bulleting and light use of emojis.',
       elements: [
-        { type: 'Bullets', frequency: 40, per1000: 12 },
-        { type: 'Quotes', frequency: 35, per1000: 8 },
-        { type: 'Tables', frequency: 15, per1000: 3 },
-        { type: 'Code blocks', frequency: 10, per1000: 2 }
+        { type: 'Simple Sentences', frequency: 40, per1000: 12 },
+        { type: 'Compound Sentences', frequency: 35, per1000: 8 },
+        { type: 'Complex Sentences', frequency: 25, per1000: 5 }
       ],
-      rule: 'Heavy use of bullet points and customer quotes for credibility'
+      timeline: [
+        { date: '2024-01', value: 82 },
+        { date: '2024-02', value: 85 },
+        { date: '2024-03', value: 88 }
+      ],
+      examples: [
+        {
+          text: "• Key benefits:\n- Improved efficiency\n- Reduced costs\n- Better outcomes",
+          score: 95,
+          context: "Feature List"
+        },
+        {
+          text: "1. First, configure your settings\n2. Then, connect your data source\n3. Finally, start the analysis",
+          score: 92,
+          context: "Instructions"
+        }
+      ],
+      styleViolations: [
+        {
+          type: "Inconsistent Formatting",
+          severity: "mild",
+          count: 4,
+          examples: ["Mixed bullet styles in the same list"]
+        },
+        {
+          type: "Emoji Overuse",
+          severity: "mild",
+          count: 2,
+          examples: ["✨🚀 Amazing new features! 🎉💪"]
+        }
+      ],
+      performanceMetrics: {
+        ctr: 3.8,
+        engagement: 68,
+        dwellTime: 165,
+        conversionRate: 2.8
+      }
     }
   },
   {
@@ -45,14 +151,44 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'Layers',
     color: 'bg-[#111013]',
     data: {
+      rule: 'Opens with problem statement, closes with action prompt.',
       flows: [
-        { pattern: 'Challenge→Solution→Results', frequency: 35 },
-        { pattern: 'Problem→Analysis→Implementation', frequency: 28 },
-        { pattern: 'Introduction→Features→Benefits', frequency: 22 },
-        { pattern: 'Story→Lesson→Application', frequency: 15 }
+        { pattern: 'Problem→Solution→Results', frequency: 55 },
+        { pattern: 'Story→Lesson→Action', frequency: 25 },
+        { pattern: 'Context→Feature→Benefit', frequency: 20 }
       ],
       avgSections: 5.2,
-      rule: 'Problem-solution narrative structure preferred across content types'
+      timeline: [
+        { date: '2024-01', value: 78 },
+        { date: '2024-02', value: 82 },
+        { date: '2024-03', value: 85 }
+      ],
+      examples: [
+        {
+          text: "Challenge: Managing large-scale data pipelines\nSolution: Our automated workflow\nResult: 50% faster processing",
+          score: 94,
+          context: "Case Study"
+        },
+        {
+          text: "Problem: Manual deployment errors\nSolution: Automated CI/CD\nOutcome: 99.9% success rate",
+          score: 91,
+          context: "Technical Blog"
+        }
+      ],
+      styleViolations: [
+        {
+          type: "Missing Call-to-Action",
+          severity: "critical",
+          count: 3,
+          examples: ["Blog post ends without clear next steps"]
+        }
+      ],
+      performanceMetrics: {
+        ctr: 4.5,
+        engagement: 75,
+        dwellTime: 210,
+        conversionRate: 3.4
+      }
     }
   },
   {
@@ -61,11 +197,47 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'MessageSquare',
     color: 'bg-[#111013]',
     data: {
+      rule: 'Active verbs and minimal hedging; reading level Grade 9.',
       sentenceLength: 18.5,
-      jargonDensity: 0.15,
-      readabilityGrade: 8.2,
+      readabilityGrade: '9.2',
       passiveVoice: 12,
-      rule: 'Moderate sentence length with controlled technical jargon usage'
+      timeline: [
+        { date: '2024-01', value: 88 },
+        { date: '2024-02', value: 90 },
+        { date: '2024-03', value: 91 }
+      ],
+      examples: [
+        {
+          text: "The system automatically processes your data and generates insights.",
+          score: 96,
+          context: "Feature Description"
+        },
+        {
+          text: "Users can customize dashboards with drag-and-drop widgets.",
+          score: 94,
+          context: "UI Description"
+        }
+      ],
+      styleViolations: [
+        {
+          type: "Passive Voice Overuse",
+          severity: "mild",
+          count: 5,
+          examples: ["The data was processed by the system"]
+        },
+        {
+          type: "Complex Jargon",
+          severity: "mild",
+          count: 3,
+          examples: ["Utilizing the methodological framework..."]
+        }
+      ],
+      performanceMetrics: {
+        ctr: 3.9,
+        engagement: 70,
+        dwellTime: 195,
+        conversionRate: 2.9
+      }
     }
   },
   {
@@ -74,14 +246,44 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'Target',
     color: 'bg-[#111013]',
     data: {
+      rule: 'SEO-focused, education-first content with brand mentions in last paragraph.',
       topCTAs: [
         { text: 'Learn More', count: 156 },
         { text: 'Get Started', count: 134 },
         { text: 'Contact Us', count: 98 },
         { text: 'Schedule Demo', count: 87 }
       ],
-      internalLinkRate: 0.23,
-      rule: 'Educational CTAs preferred over aggressive sales language'
+      performanceMetrics: {
+        ctr: 3.2,
+        engagement: 65,
+        dwellTime: 245,
+        conversionRate: 2.8
+      },
+      timeline: [
+        { date: '2024-01', value: 82 },
+        { date: '2024-02', value: 85 },
+        { date: '2024-03', value: 88 }
+      ],
+      examples: [
+        {
+          text: "Discover how leading enterprises are transforming their operations with AI-powered analytics.",
+          score: 93,
+          context: "Blog Introduction"
+        },
+        {
+          text: "Ready to revolutionize your data strategy? Schedule a demo today.",
+          score: 89,
+          context: "Call-to-Action"
+        }
+      ],
+      styleViolations: [
+        {
+          type: "Keyword Stuffing",
+          severity: "critical",
+          count: 2,
+          examples: ["AI machine learning AI algorithms AI solutions..."]
+        }
+      ]
     }
   },
   {
@@ -90,148 +292,39 @@ export const BRAND_DIMENSIONS: BrandDimension[] = [
     icon: 'Code',
     color: 'bg-[#111013]',
     data: {
+      rule: 'Technical accuracy with practical implementation examples.',
       brandTerms: [
-        { term: 'digital transformation', count: 89 },
-        { term: 'customer experience', count: 76 },
-        { term: 'data-driven', count: 65 },
-        { term: 'scalable solution', count: 54 }
+        { term: 'AI-powered analytics', count: 45 },
+        { term: 'real-time processing', count: 38 },
+        { term: 'enterprise-grade', count: 32 },
+        { term: 'scalable solution', count: 28 }
       ],
-      complianceRate: 0.94,
-      rule: 'Consistent use of transformation and experience terminology'
-    }
-  },
-  {
-    id: 'behavioral',
-    title: 'Behavioral/Performance Metadata',
-    icon: 'BarChart3',
-    color: 'bg-[#111013]',
-    data: {
-      avgScrollDepth: 0.68,
-      readThroughRate: 0.45,
-      ctaEngagementRate: 0.12,
-      shareRate: 0.08,
-      rule: 'Content optimized for 68% scroll depth with moderate engagement'
-    }
-  },
-  {
-    id: 'persona-signals',
-    title: 'Persona Targeting Signals',
-    icon: 'Users',
-    color: 'bg-[#111013]',
-    data: {
-      mentions: [
-        { role: 'Marketing Managers', frequency: 35 },
-        { role: 'Developers', frequency: 28 },
-        { role: 'Executives', frequency: 22 },
-        { role: 'Sales Teams', frequency: 15 }
+      timeline: [
+        { date: '2024-01', value: 85 },
+        { date: '2024-02', value: 88 },
+        { date: '2024-03', value: 92 }
       ],
-      rule: 'Primary focus on marketing professionals with technical depth'
-    }
-  },
-  {
-    id: 'emotional',
-    title: 'Emotional Framing & Sentiment',
-    icon: 'MessageSquare',
-    color: 'bg-[#111013]',
-    data: {
-      emotions: [
-        { type: 'Empowerment', mix: 40 },
-        { type: 'Urgency', mix: 25 },
-        { type: 'Empathy', mix: 20 },
-        { type: 'Excitement', mix: 15 }
+      examples: [
+        {
+          text: "Our distributed processing engine handles 1M+ events per second with sub-millisecond latency.",
+          score: 96,
+          context: "Performance Specs"
+        }
       ],
-      sentimentScore: 0.72,
-      rule: 'Empowering tone with controlled urgency and empathetic understanding'
-    }
-  },
-  {
-    id: 'media-assets',
-    title: 'Media Asset References',
-    icon: 'FileText',
-    color: 'bg-[#111013]',
-    data: {
-      formats: [
-        { type: 'Screenshots', percentage: 45 },
-        { type: 'Infographics', percentage: 25 },
-        { type: 'Videos', percentage: 20 },
-        { type: 'None', percentage: 10 }
+      styleViolations: [
+        {
+          type: "Unverified Claims",
+          severity: "critical",
+          count: 2,
+          examples: ["Fastest solution in the market"]
+        }
       ],
-      rule: 'Heavy reliance on screenshots and visual proof points'
-    }
-  },
-  {
-    id: 'localization',
-    title: 'Localization Patterns',
-    icon: 'Globe',
-    color: 'bg-[#111013]',
-    data: {
-      coverage: [
-        { language: 'English (US)', percentage: 85 },
-        { language: 'English (UK)', percentage: 10 },
-        { language: 'Spanish', percentage: 3 },
-        { language: 'French', percentage: 2 }
-      ],
-      rule: 'Primarily US English with minimal international adaptation'
-    }
-  },
-  {
-    id: 'tagging',
-    title: 'Tagging Taxonomies',
-    icon: 'Tag',
-    color: 'bg-[#111013]',
-    data: {
-      topTags: [
-        { tag: 'Product Update', count: 234 },
-        { tag: 'Case Study', count: 189 },
-        { tag: 'Best Practices', count: 156 },
-        { tag: 'Industry Insights', count: 134 }
-      ],
-      rule: 'Product-focused tagging with emphasis on practical guidance'
-    }
-  },
-  {
-    id: 'repetition',
-    title: 'Common Repetition Patterns',
-    icon: 'RefreshCw',
-    color: 'bg-[#111013]',
-    data: {
-      phrases: [
-        { phrase: 'In today\'s digital landscape', count: 45 },
-        { phrase: 'Our team of experts', count: 38 },
-        { phrase: 'Proven track record', count: 32 },
-        { phrase: 'Industry-leading solution', count: 28 }
-      ],
-      rule: 'Consistent use of authority-building phrases and industry context'
-    }
-  },
-  {
-    id: 'style-violations',
-    title: 'Style Violations to Avoid',
-    icon: 'AlertCircle',
-    color: 'bg-[#111013]',
-    data: {
-      violations: [
-        { type: 'Clickbait headlines', percentage: 8 },
-        { type: 'Missing disclaimers', percentage: 5 },
-        { type: 'Inconsistent formatting', percentage: 12 },
-        { type: 'Overuse of superlatives', percentage: 15 }
-      ],
-      rule: 'Avoid clickbait and excessive superlatives; maintain professional credibility'
-    }
-  },
-  {
-    id: 'compliance',
-    title: 'Compliance/Legal Patterns',
-    icon: 'CheckCircle',
-    color: 'bg-[#111013]',
-    data: {
-      coverage: [
-        { type: 'Legal disclaimers', percentage: 94 },
-        { type: 'Copyright notices', percentage: 87 },
-        { type: 'Trademark usage', percentage: 91 },
-        { type: 'Privacy statements', percentage: 89 }
-      ],
-      rule: 'High compliance rate with legal requirements and proper attribution'
+      performanceMetrics: {
+        ctr: 4.1,
+        engagement: 73,
+        dwellTime: 205,
+        conversionRate: 3.2
+      }
     }
   }
 ];
