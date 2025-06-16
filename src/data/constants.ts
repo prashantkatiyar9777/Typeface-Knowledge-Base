@@ -1,0 +1,62 @@
+export const CONTENT_FOLDERS = [
+  'General Blog Posts',
+  'Technical Blogs',
+  'Product Blogs',
+  'Marketing Blogs',
+  'Case Studies',
+  'Thought Leadership',
+  'Promotional Emails',
+  'Drip & Onboarding Series',
+  'Transactional Emails',
+  'Newsletters',
+  'Outreach & Sales Emails',
+  'Internal Comms Emails',
+  'Email Subject Lines',
+  'Awareness Posts',
+  'Engagement Posts',
+  'Promotional Posts',
+  'Platform–Specific Posts',
+  'TikTok Scripts',
+  'YouTube & Vimeo Blends',
+  'Search Ads',
+  'Display Ads',
+  'Social Ads',
+  'Retargeting Ads',
+  'TikTok & Other Ads',
+  'Product Landing Pages',
+  'Event & Registration Pages',
+  'Lead‑Gen CTAs',
+  'Press Releases',
+  'Corporate Announcements',
+  'Creative Briefs',
+  'Product Descriptions',
+  'Product Listings',
+  'SEO Meta Tags',
+  'Job Postings',
+  'Job Summaries',
+  'LinkedIn HR Posts',
+  'Podcast Blends',
+  'Meeting Blends',
+  'Web Blends',
+  'Push Notifications',
+  'In‑App Notifications',
+  'Sales Decks',
+  'One‑Pagers',
+  'Sales Pitches',
+  'Design & Banner Images',
+  'Product Mockups'
+];
+
+export const TIME_RANGES = [
+  { value: '1m', label: '1 Month' },
+  { value: '3m', label: '3 Months' },
+  { value: '6m', label: '6 Months' },
+  { value: '1y', label: '1 Year' },
+  { value: 'all', label: 'All Time' }
+];
+
+export const AGENT_STATUS = {
+  ACTIVE: 'active',
+  TRAINING: 'training',
+  INACTIVE: 'inactive'
+} as const;

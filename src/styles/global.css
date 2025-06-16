@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Font Family */
+:root {
+  --font-suisse: 'SuisseIntl', system-ui, -apple-system, sans-serif;
+}
+
+/* Apply font family to everything */
+* {
+  font-family: var(--font-suisse) !important;
+}
+
+/* Remove all border radius - Base rule */
+* {
+  border-radius: 0 !important;
+}
+
+/* Remove shadows */
+* {
+  box-shadow: none !important;
+}
+
+/* Font Weights */
+.font-thin { font-family: var(--font-suisse) !important; }
+.font-extralight { font-family: var(--font-suisse) !important; }
+.font-light { font-family: var(--font-suisse) !important; }
+.font-normal { font-family: var(--font-suisse) !important; }
+.font-medium { font-family: var(--font-suisse) !important; }
+.font-semibold { font-family: var(--font-suisse) !important; }
+.font-bold { font-family: var(--font-suisse) !important; }
+.font-extrabold { font-family: var(--font-suisse) !important; }
+.font-black { font-family: var(--font-suisse) !important; }
+
+/* Specific Element Overrides */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a,
+button, input, select, textarea,
+label, li {
+  font-family: var(--font-suisse) !important;
+}
+
+/* Interactive Elements - Explicit overrides */
+button,
+.button,
+[type='button'],
+[type='reset'],
+[type='submit'],
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-success,
+.btn-warning,
+.btn-info {
+  border-radius: 0 !important;
+}
+
+/* Form Elements */
+input,
+select,
+textarea,
+.form-input,
+.form-select,
+.form-textarea,
+.form-multiselect,
+.input-group,
+.input-group-text,
+.custom-select {
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: var(--font-suisse) !important;
+}
+
+/* Dropdowns and Menus */
+.dropdown,
+.dropdown-menu,
+.dropdown-content,
+.menu,
+.submenu,
+.popover,
+.tooltip,
+[role="menu"],
+[role="listbox"],
+[role="dialog"],
+[x-placement] {
+  border-radius: 0 !important;
+}
+
+/* Cards and Containers */
+.card,
+.container,
+.modal,
+.modal-content,
+.panel,
+.box,
+.alert,
+.notification,
+.toast {
+  border-radius: 0 !important;
+}
+
+/* Navigation Elements */
+.nav,
+.nav-item,
+.nav-link,
+.tab,
+.tab-content,
+.pagination,
+.page-item,
+.page-link {
+  border-radius: 0 !important;
+}
+
+/* Badges and Labels */
+.badge,
+.label,
+.tag,
+.chip {
+  border-radius: 0 !important;
+}
+
+/* Progress and Loading */
+.progress,
+.progress-bar,
+.spinner,
+.loader {
+  border-radius: 0 !important;
+}
+
+/* Lists and Tables */
+.list-group,
+.list-group-item,
+.table,
+.table-bordered,
+.table-responsive {
+  border-radius: 0 !important;
+}
+
+/* Images and Media */
+img,
+.img-thumbnail,
+.media,
+.avatar {
+  border-radius: 0 !important;
+}
+
+/* Tailwind Specific */
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-full {
+  border-radius: 0 !important;
+}
+
+/* Third-party Component Overrides */
+[class*="MuiButton"],
+[class*="MuiPaper"],
+[class*="MuiCard"],
+[class*="MuiDialog"],
+[class*="ant-"],
+[class*="el-"],
+[class*="v-"],
+.chakra-button,
+.chakra-input,
+.chakra-select,
+.chakra-modal,
+.chakra-menu {
+  border-radius: 0 !important;
+}
+
+/* Focus States */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  border-radius: 0 !important;
+}
+
+/* Custom Classes */
+.no-radius {
+  border-radius: 0 !important;
+}
+
+/* Ensure all corners are square even with dynamic classes */
+[class*="rounded"] {
+  border-radius: 0 !important;
+} 
